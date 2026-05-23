@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahi Baag — Pure Farm. Royal Taste.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9C8;
+    --deep: #1A1208;
+    --brown: #3D2B0E;
+    --cream: #FAF6ED;
+    --green: #2D5016;
+    --green-mid: #4A7C2A;
+    --green-light: #E8F0E0;
+    --white: #FFFFFF;
+    --gray: #888070;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--deep); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,18,8,0.97); backdrop-filter: blur(10px);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
+    height: 72px; border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-decoration: none; }
+  .nav-logo span { color: var(--gold-light); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cart { display: flex; align-items: center; gap: 8px; background: var(--gold); color: var(--deep); padding: 10px 22px; border-radius: 2px; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border: none; text-transform: uppercase; transition: background 0.3s; }
+  .nav-cart:hover { background: var(--gold-light); }
+
+  .hero { min-height: 100vh; background: linear-gradient(135deg, #0E0B05 0%, #1A1208 40%, #2A1F0A 70%, #1A1208 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding: 72px 0 0; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 60%); }
+  .rice-decor { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 180px; opacity: 0.15; animation: float 6s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(-50%) rotate(-5deg); } 50% { transform: translateY(-56%) rotate(5deg); } }
+  .hero-content { position: relative; z-index: 2; padding: 0 80px; max-width: 680px; animation: heroIn 1.2s ease both; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; padding: 6px 16px; border-radius: 1px; margin-bottom: 28px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 86px); font-weight: 600; line-height: 1.05; color: var(--white); margin-bottom: 24px; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero p { color: rgba(255,255,255,0.6); font-size: 17px; line-height: 1.7; margin-bottom: 44px; max-width: 480px; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--deep); padding: 16px 36px; border: none; border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--white); padding: 15px 36px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats { position: absolute; bottom: 60px; left: 80px; right: 80px; display: flex; gap: 48px; border-top: 1px solid rgba(201,168,76,0.15); padding-top: 36px; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+
+  section { padding: 100px 80px; }
+  .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 600; line-height: 1.1; color: var(--deep); }
+  .section-title em { color: var(--green); font-style: italic; }
+
+  .tiers { background: var(--deep); }
+  .tiers .section-title { color: var(--white); }
+  .tiers-intro { color: rgba(255,255,255,0.5); max-width: 560px; margin-top: 16px; font-size: 16px; line-height: 1.7; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; }
+  .tier-card { padding: 48px 40px; cursor: pointer; transition: transform 0.3s; overflow: hidden; position: relative; }
+  .tier-card:hover { transform: translateY(-4px); }
+  .tier-basic { background: linear-gradient(145deg, #2A2010, #1E1608); border: 1px solid rgba(201,168,76,0.1); }
+  .tier-regular { background: linear-gradient(145deg, #152008, #0D1805); border: 1px solid rgba(74,124,42,0.3); }
+  .tier-organic { background: linear-gradient(145deg, #2A2010, #1E160A); border: 1px solid rgba(201,168,76,0.4); }
+  .tier-organic::before { content: 'BESTSELLER'; position: absolute; top: 20px; right: -28px; background: var(--gold); color: var(--deep); font-size: 9px; font-weight: 700; letter-spacing: 2px; padding: 5px 36px; transform: rotate(45deg); }
+  .tier-icon { font-size: 48px; margin-bottom: 24px; }
+  .tier-badge { display: inline-block; padding: 4px 12px; border-radius: 1px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+  .badge-classic { background: rgba(201,168,76,0.15); color: var(--gold-light); }
+  .badge-select { background: rgba(74,124,42,0.2); color: #8BC94A; }
+  .badge-organic { background: var(--gold); color: var(--deep); }
+  .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .tier-desc { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
+  .tier-features { list-style: none; margin-bottom: 36px; }
+  .tier-features li { color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px; }
+  .tier-features li::before { content: '—'; color: var(--gold); font-size: 11px; }
+  .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 20px; letter-spacing: 1px; }
+  .tier-price strong { font-size: 28px; color: var(--gold); font-weight: 600; }
+  .tier-btn { width: 100%; padding: 14px; border: 1px solid rgba(201,168,76,0.4); background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.3s; border-radius: 1px; }
+  .tier-btn:hover, .tier-organic .tier-btn { background: var(--gold); color: var(--deep); border-color: var(--gold); }
+
+  .products { background: var(--cream); }
+  .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+  .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-tab { padding: 10px 22px; border-radius: 1px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; cursor: pointer; border: 1px solid rgba(26,18,8,0.2); background: transparent; color: var(--gray); transition: all 0.2s; }
+  .filter-tab.active, .filter-tab:hover { background: var(--deep); color: var(--gold); border-color: var(--deep); }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .product-card { background: var(--white); border-radius: 2px; overflow: hidden; transition: all 0.3s; border: 1px solid rgba(26,18,8,0.06); display: none; }
+  .product-card.visible { display: block; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,18,8,0.1); }
+  .product-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 72px; position: relative; }
+  .product-tier-dot { position: absolute; top: 16px; left: 16px; padding: 4px 10px; border-radius: 1px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .dot-classic { background: rgba(201,168,76,0.15); color: #8B6914; }
+  .dot-select { background: rgba(74,124,42,0.15); color: var(--green); }
+  .dot-organic { background: var(--green); color: var(--white); }
+  .size-badges { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 4px; }
+  .size-badge { background: rgba(26,18,8,0.7); color: rgba(255,255,255,0.8); font-size: 9px; padding: 3px 7px; border-radius: 1px; font-weight: 600; }
+  .product-body { padding: 24px; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--deep); margin-bottom: 6px; line-height: 1.2; }
+  .product-sub { font-size: 12px; color: var(--gray); letter-spacing: 1px; margin-bottom: 12px; }
+  .product-desc { font-size: 13px; color: rgba(26,18,8,0.6); line-height: 1.6; margin-bottom: 20px; }
+  .product-footer { display: flex; justify-content: space-between; align-items: center; }
+  .product-price { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--deep); }
+  .product-price span { font-size: 13px; color: var(--gray); font-family: 'Jost', sans-serif; font-weight: 400; }
+  .add-btn { background: var(--deep); color: var(--gold); border: none; padding: 10px 20px; border-radius: 1px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .add-btn:hover { background: var(--gold); color: var(--deep); }
+
+  .size-guide { background: var(--green); position: relative; overflow: hidden; }
+  .size-guide .section-title { color: var(--white); }
+  .size-guide .section-label { color: rgba(255,255,255,0.5); }
+  .size-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 56px; }
+  .size-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; padding: 32px 20px; text-align: center; transition: all 0.3s; cursor: pointer; }
+  .size-item:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); }
+  .size-visual { margin: 0 auto 20px; background: rgba(255,255,255,0.1); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .s1{width:36px;height:50px} .s2{width:46px;height:62px} .s3{width:58px;height:76px} .s4{width:70px;height:90px} .s5{width:90px;height:110px}
+  .size-weight { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--gold); margin-bottom: 6px; }
+  .size-label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .size-target { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+  .b2b { background: var(--gold-pale); border-top: 3px solid var(--gold); }
+  .b2b-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .b2b-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 600; color: var(--deep); line-height: 1.1; margin-bottom: 20px; }
+  .b2b-title em { color: var(--green); font-style: italic; }
+  .b2b-desc { color: rgba(26,18,8,0.65); font-size: 16px; line-height: 1.7; margin-bottom: 36px; }
+  .b2b-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .b2b-feat { background: var(--white); padding: 20px; border-radius: 2px; border-left: 3px solid var(--gold); }
+  .b2b-feat-icon { font-size: 24px; margin-bottom: 8px; }
+  .b2b-feat-title { font-weight: 600; font-size: 14px; color: var(--deep); margin-bottom: 4px; }
+  .b2b-feat-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+  .b2b-segments { display: flex; flex-direction: column; gap: 16px; }
+  .b2b-seg { background: var(--white); border-radius: 2px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; border: 1px solid rgba(26,18,8,0.08); transition: all 0.3s; }
+  .b2b-seg:hover { transform: translateX(8px); border-color: var(--gold); }
+  .b2b-seg-icon { font-size: 32px; flex-shrink: 0; }
+  .b2b-seg-title { font-weight: 600; font-size: 16px; color: var(--deep); margin-bottom: 4px; }
+  .b2b-seg-desc { font-size: 13px; color: var(--gray); }
+  .b2b-seg-arrow { margin-left: auto; color: var(--gold); font-size: 20px; }
+
+  .coming { background: var(--cream); }
+  .coming-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+  .coming-card { border: 1px dashed rgba(26,18,8,0.2); border-radius: 2px; padding: 36px 24px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s; background: rgba(255,255,255,0.5); }
+  .coming-card:hover { border-color: var(--gold); background: var(--white); }
+  .coming-soon-tag { position: absolute; top: 14px; right: 14px; background: var(--gold-pale); color: var(--brown); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; border-radius: 1px; font-weight: 600; }
+  .coming-icon { font-size: 48px; margin-bottom: 16px; }
+  .coming-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--deep); margin-bottom: 8px; }
+  .coming-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+  .order { background: var(--deep); }
+  .order .section-title { color: var(--white); }
+  .order .section-label { color: var(--gold); }
+  .order-sub { color: rgba(255,255,255,0.45); margin-top: 12px; margin-bottom: 56px; font-size: 15px; }
+  .order-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 500; }
+  .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 18px; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s; -webkit-appearance: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--deep); color: var(--white); }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .submit-btn { grid-column: 1 / -1; background: var(--gold); color: var(--deep); border: none; padding: 18px 48px; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; width: fit-content; }
+  .submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-sidebar { position: fixed; top: 0; right: -420px; width: 420px; height: 100vh; background: var(--cream); z-index: 201; transition: right 0.4s ease; display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,0.2); }
+  .cart-sidebar.open { right: 0; }
+  .cart-header { padding: 28px 32px; background: var(--deep); display: flex; align-items: center; justify-content: space-between; }
+  .cart-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--gold); }
+  .cart-close { background: none; border: none; color: rgba(255,255,255,0.5); font-size: 24px; cursor: pointer; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 24px 32px; }
+  .cart-empty { text-align: center; padding: 60px 0; color: var(--gray); }
+  .cart-empty-icon { font-size: 48px; margin-bottom: 12px; }
+  .cart-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(26,18,8,0.08); align-items: center; }
+  .cart-item-icon { font-size: 36px; flex-shrink: 0; }
+  .cart-item-name { font-weight: 600; font-size: 14px; color: var(--deep); }
+  .cart-item-size { font-size: 12px; color: var(--gray); }
+  .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--deep); }
+  .cart-item-remove { background: none; border: none; color: var(--gray); cursor: pointer; font-size: 18px; }
+  .cart-footer { padding: 24px 32px; border-top: 1px solid rgba(26,18,8,0.1); }
+  .cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .cart-total-label { font-size: 14px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+  .cart-total-val { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--deep); }
+  .checkout-btn { width: 100%; background: var(--deep); color: var(--gold); border: none; padding: 16px; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .checkout-btn:hover { background: var(--gold); color: var(--deep); }
+
+  footer { background: #0A0703; padding: 72px 80px 40px; border-top: 1px solid rgba(201,168,76,0.15); }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+  .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--gold); letter-spacing: 2px; margin-bottom: 16px; }
+  .footer-brand-name span { font-style: italic; }
+  .footer-tagline { color: rgba(255,255,255,0.35); font-size: 14px; line-height: 1.6; max-width: 260px; }
+  .footer-col h4 { color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 20px; font-weight: 500; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; }
+  .footer-col a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { color: rgba(255,255,255,0.25); font-size: 13px; }
+  .footer-copy strong { color: var(--gold); }
+  .footer-badges { display: flex; gap: 12px; }
+  .footer-badge { border: 1px solid rgba(201,168,76,0.2); padding: 6px 14px; border-radius: 1px; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+
+  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--deep); color: var(--gold); padding: 14px 28px; border-radius: 2px; font-size: 13px; font-weight: 500; letter-spacing: 1px; border: 1px solid rgba(201,168,76,0.3); transition: transform 0.4s ease; z-index: 300; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; } .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero-content { padding: 0 24px; }
+    .hero-stats { left: 24px; right: 24px; flex-wrap: wrap; gap: 24px; }
+    .tiers-grid { grid-template-columns: 1fr; }
+    .size-grid { grid-template-columns: repeat(3, 1fr); }
+    .b2b-inner { grid-template-columns: 1fr; }
+    .coming-grid { grid-template-columns: repeat(2, 1fr); }
+    .order-form { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .cart-sidebar { width: 100%; right: -100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Shahi <span>Baag</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#sizes">Sizes</a></li>
+    <li><a href="#b2b">Wholesale</a></li>
+    <li><a href="#order">Order</a></li>
+  </ul>
+  <button class="nav-cart" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+</nav>
+
+<section class="hero">
+  <div class="rice-decor">🌾</div>
+  <div class="hero-content">
+    <div class="hero-badge">🌾 Farm to Table — Canada's Premium Rice Brand</div>
+    <h1>Pure Farm.<br><em>Royal Taste.</em></h1>
+    <p>From the fertile fields of India to your table — Shahi Baag brings you the finest grains, grown with centuries of tradition and delivered to every corner of Canada.</p>
+    <div class="hero-ctas">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#b2b" class="btn-outline">Wholesale Enquiry</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Rice Varieties</div></div>
+    <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Pack Sizes</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Quality Tiers</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">CFIA Certified</div></div>
+  </div>
+</section>
+
+<section class="tiers" id="quality">
+  <div class="section-label">Quality Promise</div>
+  <h2 class="section-title" style="color:white">Three Tiers.<br>One Standard of <em style="color:var(--gold-light)">Excellence.</em></h2>
+  <p class="tiers-intro">Every grain of Shahi Baag rice is sourced directly from trusted Indian farms and meets all Canadian Food Inspection Agency standards — no exceptions.</p>
+  <div class="tiers-grid">
+    <div class="tier-card tier-basic">
+      <div class="tier-icon">🌾</div>
+      <div class="tier-badge badge-classic">Classic</div>
+      <div class="tier-name">Shahi Classic</div>
+      <p class="tier-desc">Quality rice at an accessible price point. Meets all Canadian food safety standards — ideal for everyday cooking, bulk buyers, and food manufacturers.</p>
+      <ul class="tier-features">
+        <li>Meets all CFIA safety standards</li>
+        <li>Quality tested &amp; graded</li>
+        <li>Available in all pack sizes</li>
+        <li>Best for bulk &amp; B2B orders</li>
+        <li>Consistent grain quality</li>
+      </ul>
+      <div class="tier-price">From <strong>$8</strong> / 2kg</div>
+      <button class="tier-btn" onclick="document.getElementById('products').scrollIntoView()">Explore Classic →</button>
+    </div>
+    <div class="tier-card tier-regular">
+      <div class="tier-icon">🍃</div>
+      <div class="tier-badge badge-select">Select</div>
+      <div class="tier-name">Shahi Select</div>
+      <p class="tier-desc">Premium grade, sorted and aged rice with reduced pesticide residue. The perfect balance of quality and value for everyday family meals.</p>
+      <ul class="tier-features">
+        <li>Premium sorted &amp; graded grain</li>
+        <li>Reduced pesticide residue</li>
+        <li>Aged for enhanced aroma</li>
+        <li>Ideal for families &amp; restaurants</li>
+        <li>Richer flavour profile</li>
+      </ul>
+      <div class="tier-price">From <strong>$12</strong> / 2kg</div>
+      <button class="tier-btn" onclick="document.getElementById('products').scrollIntoView()">Explore Select →</button>
+    </div>
+    <div class="tier-card tier-organic">
+      <div class="tier-icon">✨</div>
+      <div class="tier-badge badge-organic">Organic</div>
+      <div class="tier-name">Shahi Organic</div>
+      <p class="tier-desc">100% certified organic — zero pesticides, zero compromise. Hand-sorted, naturally aged, and certified for the discerning consumer who wants only the best.</p>
+      <ul class="tier-features">
+        <li>Certified organic — zero pesticides</li>
+        <li>Hand sorted &amp; naturally aged</li>
+        <li>Non-GMO verified</li>
+        <li>Premium royal packaging</li>
+        <li>Health store &amp; specialty channel</li>
+      </ul>
+      <div class="tier-price">From <strong>$18</strong> / 2kg</div>
+      <button class="tier-btn">Explore Organic →</button>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-label">Our Range</div>
+      <h2 class="section-title">Every Grain,<br>Every <em>Need.</em></h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-tab" onclick="filterProducts('classic', this)">Classic</button>
+      <button class="filter-tab" onclick="filterProducts('select', this)">Select</button>
+      <button class="filter-tab" onclick="filterProducts('organic', this)">Organic</button>
+      <button class="filter-tab" onclick="filterProducts('b2b', this)">Bulk / B2B</button>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid">
+    <div class="product-card visible" data-tier="organic">
+      <div class="product-img" style="background:linear-gradient(135deg,#f5e9c8,#e8d5a0)">🌾<div class="product-tier-dot dot-organic">Organic</div><div class="size-badges"><span class="size-badge">1kg</span><span class="size-badge">2kg</span><span class="size-badge">5kg</span><span class="size-badge">10kg</span></div></div>
+      <div class="product-body"><div class="product-name">Extra Long Grain Basmati</div><div class="product-sub">ORGANIC · AGED 2 YEARS · INDIA</div><div class="product-desc">The crown jewel of Shahi Baag — aged 2 years for unmatched aroma, certified organic, and hand-sorted for the perfect grain.</div><div class="product-footer"><div class="product-price">$18 <span>/ 2kg</span></div><button class="add-btn" onclick="addToCart('Extra Long Basmati', 18, '🌾')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="select">
+      <div class="product-img" style="background:linear-gradient(135deg,#e8f0e0,#c8ddb0)">🍚<div class="product-tier-dot dot-select">Select</div><div class="size-badges"><span class="size-badge">2kg</span><span class="size-badge">5kg</span><span class="size-badge">10kg</span></div></div>
+      <div class="product-body"><div class="product-name">Sella Basmati Rice</div><div class="product-sub">SELECT · PARBOILED · INDIA</div><div class="product-desc">Parboiled golden basmati with firm grain, ideal for biryanis and restaurant-style cooking. Every grain stays separate.</div><div class="product-footer"><div class="product-price">$14 <span>/ 2kg</span></div><button class="add-btn" onclick="addToCart('Sella Basmati', 14, '🍚')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="organic">
+      <div class="product-img" style="background:linear-gradient(135deg,#d4b896,#a07850)">🟤<div class="product-tier-dot dot-organic">Organic</div><div class="size-badges"><span class="size-badge">1kg</span><span class="size-badge">2kg</span><span class="size-badge">5kg</span></div></div>
+      <div class="product-body"><div class="product-name">Brown Basmati Rice</div><div class="product-sub">ORGANIC · WHOLE GRAIN · INDIA</div><div class="product-desc">Nutrient-rich whole grain basmati with the bran intact. High fibre, low glycemic index — the healthy choice.</div><div class="product-footer"><div class="product-price">$20 <span>/ 2kg</span></div><button class="add-btn" onclick="addToCart('Brown Basmati', 20, '🟤')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="classic">
+      <div class="product-img" style="background:linear-gradient(135deg,#fff8e7,#f0e0b0)">🌸<div class="product-tier-dot dot-classic">Classic</div><div class="size-badges"><span class="size-badge">2kg</span><span class="size-badge">5kg</span><span class="size-badge">10kg</span></div></div>
+      <div class="product-body"><div class="product-name">Jasmine Rice</div><div class="product-sub">CLASSIC · LONG GRAIN · THAILAND</div><div class="product-desc">Fragrant, soft, and slightly sticky. A staple for Thai, Vietnamese, and Southeast Asian cooking loved by all families.</div><div class="product-footer"><div class="product-price">$9 <span>/ 2kg</span></div><button class="add-btn" onclick="addToCart('Jasmine Rice', 9, '🌸')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="select">
+      <div class="product-img" style="background:linear-gradient(135deg,#2a2030,#1a1025)">⚫<div class="product-tier-dot dot-select">Select</div><div class="size-badges"><span class="size-badge">500g</span><span class="size-badge">1kg</span><span class="size-badge">2kg</span></div></div>
+      <div class="product-body"><div class="product-name">Black Rice</div><div class="product-sub">SELECT · SPECIALTY · INDIA</div><div class="product-desc">Rare and antioxidant-rich black rice with a rich nutty flavour. A specialty grain making waves in Canadian health and fine-dining markets.</div><div class="product-footer"><div class="product-price">$16 <span>/ 1kg</span></div><button class="add-btn" onclick="addToCart('Black Rice', 16, '⚫')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="classic">
+      <div class="product-img" style="background:linear-gradient(135deg,#ffe8d6,#f5c8a0)">🔴<div class="product-tier-dot dot-classic">Classic</div><div class="size-badges"><span class="size-badge">1kg</span><span class="size-badge">2kg</span><span class="size-badge">5kg</span></div></div>
+      <div class="product-body"><div class="product-name">Red Rice</div><div class="product-sub">CLASSIC · WHOLE GRAIN · INDIA</div><div class="product-desc">Earthy, chewy red rice high in iron and antioxidants. Popular in health-conscious households and natural food stores.</div><div class="product-footer"><div class="product-price">$11 <span>/ 2kg</span></div><button class="add-btn" onclick="addToCart('Red Rice', 11, '🔴')">Add to Cart</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="b2b">
+      <div class="product-img" style="background:linear-gradient(135deg,#e8e8e0,#d0d0c0)">📦<div class="product-tier-dot dot-classic">Bulk B2B</div><div class="size-badges"><span class="size-badge">20kg</span><span class="size-badge">25kg</span></div></div>
+      <div class="product-body"><div class="product-name">Broken Rice</div><div class="product-sub">BULK · PET FOOD &amp; INDUSTRIAL · INDIA</div><div class="product-desc">High-starch broken rice ideal for pet food manufacturers, breweries, and industrial food processing. Available in 20kg and 25kg bulk bags.</div><div class="product-footer"><div class="product-price">$POA <span>/ bulk</span></div><button class="add-btn" onclick="document.getElementById('order').scrollIntoView()">Get Quote</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="b2b">
+      <div class="product-img" style="background:linear-gradient(135deg,#f5f0e8,#e8e0d0)">🥣<div class="product-tier-dot dot-classic">Bulk B2B</div><div class="size-badges"><span class="size-badge">20kg</span><span class="size-badge">25kg</span></div></div>
+      <div class="product-body"><div class="product-name">Long Grain White Rice</div><div class="product-sub">BULK · RESTAURANT &amp; FOOD SERVICE</div><div class="product-desc">Consistent, high-yield long grain white rice for restaurants and food service. Available in restaurant-size bulk packs with custom labeling option.</div><div class="product-footer"><div class="product-price">$POA <span>/ bulk</span></div><button class="add-btn" onclick="document.getElementById('order').scrollIntoView()">Get Quote</button></div></div>
+    </div>
+    <div class="product-card visible" data-tier="organic">
+      <div class="product-img" style="background:linear-gradient(135deg,#e0f0e8,#b0d8b8)">🌿<div class="product-tier-dot dot-organic">Organic</div><div class="size-badges"><span class="size-badge">500g</span><span class="size-badge">1kg</span></div></div>
+      <div class="product-body"><div class="product-name">Wild Rice Blend</div><div class="product-sub">ORGANIC · SPECIALTY BLEND · CA/INDIA</div><div class="product-desc">A premium blend of Canadian wild rice and Indian basmati — celebrating both origins. Perfect for specialty and gourmet retailers.</div><div class="product-footer"><div class="product-price">$24 <span>/ 1kg</span></div><button class="add-btn" onclick="addToCart('Wild Rice Blend', 24, '🌿')">Add to Cart</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="size-guide" id="sizes">
+  <div class="section-label">Packaging Sizes</div>
+  <h2 class="section-title">The Right Size<br>for <em style="color:var(--gold-light)">Every Need.</em></h2>
+  <div class="size-grid">
+    <div class="size-item"><div class="size-visual s1">🛍️</div><div class="size-weight">500g</div><div class="size-label">Mini</div><div class="size-target">Trial buyers, students, singles, gifting inserts</div></div>
+    <div class="size-item"><div class="size-visual s2">🛍️</div><div class="size-weight">1 kg</div><div class="size-label">Small</div><div class="size-target">Small households, specialty grains, health buyers</div></div>
+    <div class="size-item"><div class="size-visual s3">🛍️</div><div class="size-weight">2 kg</div><div class="size-label">Regular</div><div class="size-target">Average Canadian family, standard grocery shelf</div></div>
+    <div class="size-item"><div class="size-visual s4">🛍️</div><div class="size-weight">5 kg</div><div class="size-label">Large</div><div class="size-target">Larger families, South Asian households</div></div>
+    <div class="size-item"><div class="size-visual s5">📦</div><div class="size-weight">10 kg</div><div class="size-label">Royal</div><div class="size-target">Big families, value buyers — premium gold packaging</div></div>
+  </div>
+</section>
+
+<section class="b2b" id="b2b">
+  <div class="b2b-inner">
+    <div>
+      <div class="section-label">Wholesale &amp; B2B</div>
+      <h2 class="b2b-title">Built for<br><em>Business.</em></h2>
+      <p class="b2b-desc">Shahi Baag supplies restaurants, food manufacturers, pet food producers, and distributors across Canada with consistent quality and competitive bulk pricing.</p>
+      <div class="b2b-features">
+        <div class="b2b-feat"><div class="b2b-feat-icon">🚚</div><div class="b2b-feat-title">Confirmed-Order Model</div><div class="b2b-feat-desc">We only move product once your order is confirmed — no delays</div></div>
+        <div class="b2b-feat"><div class="b2b-feat-icon">📋</div><div class="b2b-feat-title">Custom Labeling</div><div class="b2b-feat-desc">Private label options available for distributors and retailers</div></div>
+        <div class="b2b-feat"><div class="b2b-feat-icon">🌾</div><div class="b2b-feat-title">Direct Farm Sourcing</div><div class="b2b-feat-desc">Straight from Indian farms — no middlemen inflating your cost</div></div>
+        <div class="b2b-feat"><div class="b2b-feat-icon">✅</div><div class="b2b-feat-title">CFIA Compliant</div><div class="b2b-feat-desc">All products meet Canadian food safety and labeling requirements</div></div>
+      </div>
+      <a href="#order" class="btn-primary">Request Wholesale Pricing</a>
+    </div>
+    <div class="b2b-segments">
+      <div class="b2b-seg"><div class="b2b-seg-icon">🐾</div><div><div class="b2b-seg-title">Pet Food Manufacturers</div><div class="b2b-seg-desc">Broken rice &amp; whole grain bulk supply for kibble and wet food production</div></div><div class="b2b-seg-arrow">→</div></div>
+      <div class="b2b-seg"><div class="b2b-seg-icon">🍽️</div><div><div class="b2b-seg-title">Restaurants &amp; Food Service</div><div class="b2b-seg-desc">20–25kg restaurant packs with consistent grade and competitive pricing</div></div><div class="b2b-seg-arrow">→</div></div>
+      <div class="b2b-seg"><div class="b2b-seg-icon">🏪</div><div><div class="b2b-seg-title">Grocery &amp; Ethnic Retailers</div><div class="b2b-seg-desc">Shelf-ready retail packaging with bilingual CFIA-compliant labels</div></div><div class="b2b-seg-arrow">→</div></div>
+      <div class="b2b-seg"><div class="b2b-seg-icon">🏭</div><div><div class="b2b-seg-title">Food Manufacturers</div><div class="b2b-seg-desc">Rice flour, broken rice, and grain supply for cereal and snack production</div></div><div class="b2b-seg-arrow">→</div></div>
+      <div class="b2b-seg"><div class="b2b-seg-icon">📦</div><div><div class="b2b-seg-title">Distributors &amp; Importers</div><div class="b2b-seg-desc">White-label and private label bulk supply for your distribution network</div></div><div class="b2b-seg-arrow">→</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="coming">
+  <div class="section-label">Expanding Soon</div>
+  <h2 class="section-title">Shahi Baag is More<br>Than <em>Rice.</em></h2>
+  <div class="coming-grid">
+    <div class="coming-card"><div class="coming-soon-tag">Coming Soon</div><div class="coming-icon">🌶️</div><div class="coming-name">Shahi Spices</div><div class="coming-desc">Premium Indian spices — turmeric, cumin, cardamom, coriander. Farm-direct, CFIA certified, full organic range.</div></div>
+    <div class="coming-card"><div class="coming-soon-tag">Coming Soon</div><div class="coming-icon">🫘</div><div class="coming-name">Lentils &amp; Pulses</div><div class="coming-desc">Red lentils, black lentils, chickpeas, and split peas sourced directly from Indian and Canadian farms.</div></div>
+    <div class="coming-card"><div class="coming-soon-tag">Coming Soon</div><div class="coming-icon">🍯</div><div class="coming-name">Rice Mixes &amp; Kits</div><div class="coming-desc">Ready-to-cook biryani kits, pulao mixes, and khichdi blends — rice and spices together in one premium pack.</div></div>
+    <div class="coming-card"><div class="coming-soon-tag">Coming Soon</div><div class="coming-icon">🎁</div><div class="coming-name">Gift Collections</div><div class="coming-desc">Premium Diwali, Eid, and holiday gift boxes featuring curated rice and spice varieties in royal packaging.</div></div>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <div class="section-label">Place Your Order</div>
+  <h2 class="section-title">Ready to Order?</h2>
+  <p class="order-sub">For retail orders, use the cart above. For wholesale, bulk, or B2B enquiries — fill out this form and we'll get back to you within 24 hours.</p>
+  <div class="order-form">
+    <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+    <div class="form-group"><label>Company / Business Name</label><input type="text" placeholder="Optional for retail"></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="info@yourbusiness.com"></div>
+    <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+1 (647) 000-0000"></div>
+    <div class="form-group"><label>Order Type</label><select><option>Retail — Personal Order</option><option>Wholesale — Restaurant / Food Service</option><option>Wholesale — Pet Food Manufacturer</option><option>Wholesale — Grocery / Retailer</option><option>Wholesale — Food Manufacturer</option><option>Private Label Enquiry</option><option>Other</option></select></div>
+    <div class="form-group"><label>Province</label><select><option>Ontario</option><option>British Columbia</option><option>Alberta</option><option>Quebec</option><option>Manitoba</option><option>Saskatchewan</option><option>Nova Scotia</option><option>Other</option></select></div>
+    <div class="form-group full"><label>Product &amp; Quantity Required</label><textarea placeholder="E.g. 50 bags of Extra Long Basmati (10kg), Organic tier — monthly supply needed..."></textarea></div>
+    <button class="submit-btn" onclick="submitForm()">Send Enquiry →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Shahi <span>Baag</span></div>
+      <p class="footer-tagline">Pure farm produce from India, delivered with care to every table across Canada. Quality you can taste. Trust you can rely on.</p>
+    </div>
+    <div class="footer-col"><h4>Products</h4><ul><li><a href="#">Shahi Classic</a></li><li><a href="#">Shahi Select</a></li><li><a href="#">Shahi Organic</a></li><li><a href="#">Bulk &amp; B2B</a></li><li><a href="#">Spices (Coming)</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Our Farms</a></li><li><a href="#">Quality Promise</a></li><li><a href="#">Wholesale</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="#">info@shahibaag.com</a></li><li><a href="#">Brampton, Ontario</a></li><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 <strong>Shahi Baag</strong>. All rights reserved. Proudly Canadian.</div>
+    <div class="footer-badges"><div class="footer-badge">CFIA Certified</div><div class="footer-badge">Non-GMO</div><div class="footer-badge">Organic Available</div></div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header"><div class="cart-title">Your Cart</div><button class="cart-close" onclick="toggleCart()">✕</button></div>
+  <div class="cart-items" id="cart-items"><div class="cart-empty"><div class="cart-empty-icon">🛒</div><div>Your cart is empty</div></div></div>
+  <div class="cart-footer">
+    <div class="cart-total"><div class="cart-total-label">Total</div><div class="cart-total-val">$<span id="cart-total">0.00</span></div></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  let cart = [];
+  function toggleCart() {
+    document.getElementById('cart-sidebar').classList.toggle('open');
+    document.getElementById('cart-overlay').classList.toggle('open');
+  }
+  function addToCart(name, price, icon) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) { existing.qty++; } else { cart.push({ name, price, icon, qty: 1 }); }
+    updateCart(); showToast(icon + ' ' + name + ' added to cart');
+  }
+  function removeFromCart(name) { cart = cart.filter(i => i.name !== name); updateCart(); }
+  function updateCart() {
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    document.getElementById('cart-count').textContent = count;
+    document.getElementById('cart-total').textContent = total.toFixed(2);
+    const el = document.getElementById('cart-items');
+    if (cart.length === 0) {
+      el.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div>Your cart is empty</div></div>';
+    } else {
+      el.innerHTML = cart.map(i => '<div class="cart-item"><div class="cart-item-icon">' + i.icon + '</div><div class="cart-item-info"><div class="cart-item-name">' + i.name + '</div><div class="cart-item-size">Qty: ' + i.qty + '</div></div><div class="cart-item-price">$' + (i.price * i.qty).toFixed(2) + '</div><button class="cart-item-remove" onclick="removeFromCart(\'' + i.name + '\')">✕</button></div>').join('');
+    }
+  }
+  function checkout() { if (cart.length === 0) { showToast('Your cart is empty!'); return; } showToast('Redirecting to checkout... (Connect payment gateway)'); }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+  function filterProducts(tier, btn) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => { card.classList.toggle('visible', tier === 'all' || card.dataset.tier === tier); });
+  }
+  function submitForm() { showToast('Enquiry sent! We will reply within 24 hours.'); }
+</script>
+</body>
+</html>
