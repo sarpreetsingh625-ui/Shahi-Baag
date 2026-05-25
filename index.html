@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahi Baag — Royal Farm Produce</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --deep: #1A0F00;
+    --rich: #2C1A00;
+    --cream: #FAF5E9;
+    --cream-dark: #F0E6CC;
+    --green: #2D5016;
+    --green-light: #4A7A28;
+    --text: #3D2800;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Josefin Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+  nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(26,15,0,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.3); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-decoration: none; }
+  .nav-logo span { color: var(--gold-light); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream-dark); text-decoration: none; font-size: 0.75rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-actions { display: flex; gap: 16px; align-items: center; }
+  .nav-btn { background: var(--gold); color: var(--deep); border: none; border-radius: 2px; padding: 10px 22px; font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .nav-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .hero { min-height: 100vh; background: linear-gradient(135deg, var(--deep) 0%, var(--rich) 50%, #1a0f00 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding: 120px 80px 80px; }
+  .hero-content { position: relative; z-index: 2; max-width: 650px; }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 7vw, 6rem); font-weight: 300; line-height: 1.05; color: var(--cream); margin-bottom: 8px; }
+  .hero-title strong { color: var(--gold); font-weight: 700; display: block; font-style: italic; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; font-style: italic; color: rgba(250,245,233,0.6); margin-bottom: 32px; line-height: 1.6; }
+  .hero-desc { font-size: 0.8rem; letter-spacing: 1px; line-height: 2; color: rgba(250,245,233,0.5); max-width: 480px; margin-bottom: 48px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--deep); border: none; border-radius: 2px; padding: 18px 40px; font-family: 'Josefin Sans', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+  .btn-outline { background: transparent; color: var(--cream); border: 1px solid rgba(250,245,233,0.3); border-radius: 2px; padding: 18px 40px; font-family: 'Josefin Sans', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .marquee-bar { background: var(--gold); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-block; animation: marquee 25s linear infinite; }
+  .marquee-track span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--deep); font-weight: 600; padding: 0 40px; }
+  .marquee-track span::before { content: '✦  '; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  section { padding: 100px 80px; }
+  .section-label { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--deep); margin-bottom: 16px; }
+  .section-title em { font-style: italic; color: var(--gold-dark); }
+  .section-sub { font-size: 0.8rem; letter-spacing: 1px; line-height: 2; color: rgba(61,40,0,0.6); max-width: 560px; margin-bottom: 60px; }
+  .tiers-section { background: var(--deep); }
+  .tiers-section .section-title { color: var(--cream); }
+  .tiers-section .section-sub { color: rgba(250,245,233,0.5); }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .tier-card { padding: 60px 40px; position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s; }
+  .tier-card.classic { background: var(--rich); }
+  .tier-card.select { background: #221500; }
+  .tier-card.organic-card { background: #0D1F05; }
+  .tier-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .tier-card.classic::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+  .tier-card.select::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .tier-card.organic-card::before { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+  .tier-card:hover { transform: translateY(-8px); }
+  .tier-card-icon { font-size: 3rem; margin-bottom: 24px; }
+  .tier-card-tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; display: inline-block; margin-bottom: 20px; }
+  .classic .tier-card-tag { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .select .tier-card-tag { background: rgba(232,201,122,0.2); color: var(--gold-light); }
+  .organic-card .tier-card-tag { background: rgba(74,122,40,0.2); color: #7CBF45; }
+  .tier-card-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--cream); margin-bottom: 16px; }
+  .tier-card-desc { font-size: 0.75rem; letter-spacing: 0.5px; line-height: 2; color: rgba(250,245,233,0.45); margin-bottom: 32px; }
+  .tier-features { list-style: none; }
+  .tier-features li { font-size: 0.72rem; letter-spacing: 1px; color: rgba(250,245,233,0.5); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; }
+  .tier-features li::before { content: '—'; color: var(--gold); }
+  .organic-card .tier-features li::before { color: #7CBF45; }
+  .products-section { background: var(--cream); }
+  .filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+  .filter-btn { padding: 10px 24px; border: 1px solid rgba(61,40,0,0.2); border-radius: 2px; background: transparent; font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); cursor: pointer; transition: all 0.3s; }
+  .filter-btn.active, .filter-btn:hover { background: var(--deep); color: var(--gold); border-color: var(--deep); }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
+  .product-card { background: var(--white); position: relative; overflow: hidden; cursor: pointer; transition: all 0.4s; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,15,0,0.12); }
+  .product-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; overflow: hidden; }
+  .product-img.classic-bg { background: linear-gradient(135deg, #f5e6c8, #ede0b5); }
+  .product-img.select-bg { background: linear-gradient(135deg, #fdf3d7, #f5e6a8); }
+  .product-img.organic-bg { background: linear-gradient(135deg, #e8f4d9, #d4ecb8); }
+  .product-img.bulk-bg { background: linear-gradient(135deg, #e8e4dc, #d9d3c6); }
+  .product-info { padding: 28px 24px; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--deep); margin-bottom: 6px; }
+  .product-desc { font-size: 0.7rem; letter-spacing: 0.5px; line-height: 1.8; color: rgba(61,40,0,0.55); margin-bottom: 20px; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--deep); }
+  .add-btn { background: var(--deep); color: var(--gold); border: none; border-radius: 2px; padding: 12px 20px; font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .add-btn:hover { background: var(--gold); color: var(--deep); }
+  footer { background: var(--deep); padding: 60px 80px 40px; border-top: 1px solid rgba(201,168,76,0.15); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+  .footer-brand-desc { font-size: 0.72rem; line-height: 2; color: rgba(250,245,233,0.35); max-width: 280px; }
+  .footer-col-title { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { font-size: 0.75rem; color: rgba(250,245,233,0.35); text-decoration: none; transition: color 0.3s; letter-spacing: 0.5px; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.65rem; color: rgba(250,245,233,0.2); letter-spacing: 1px; }
+  .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: rgba(201,168,76,0.4); }
+  @media (max-width: 1024px) { nav { padding: 0 24px; } .nav-links { display: none; } section { padding: 60px 24px; } .hero { padding: 120px 24px 80px; } .tiers-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Shahi <span>Baag</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#tiers">Quality Tiers</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Quote</button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">From India's Fields to Canadian Tables</div>
+    <h1 class="hero-title">Royal <strong>Farm Produce</strong></h1>
+    <p class="hero-subtitle">Premium rice sourced from India's finest farms</p>
+    <p class="hero-desc">Three quality tiers. Five packaging sizes. Every variety of rice — from aged basmati to broken rice for pet food manufacturers.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#tiers" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>Basmati Rice</span><span>Broken Rice</span><span>Jasmine Rice</span><span>Brown Rice</span><span>Organic Certified</span><span>Canadian Distributor</span><span>Wholesale Available</span><span>Farm Direct</span>
+  </div>
+</div>
+<section class="tiers-section" id="tiers">
+  <div class="section-label">Our Quality Promise</div>
+  <h2 class="section-title">Three Tiers, <em>Every Need</em></h2>
+  <p class="section-sub">Whether you're feeding a family, running a restaurant, or manufacturing pet food — we have the right quality at the right price.</p>
+  <div class="tiers-grid">
+    <div class="tier-card classic">
+      <div class="tier-card-icon">🌾</div>
+      <div class="tier-card-tag">Entry Tier</div>
+      <h3 class="tier-card-title">Shahi Baag Classic</h3>
+      <p class="tier-card-desc">Standard grade rice meeting all Canadian food safety regulations. Value-driven pricing for budget-conscious buyers.</p>
+      <ul class="tier-features">
+        <li>Meets all CFIA safety standards</li>
+        <li>Conventional farming methods</li>
+        <li>Ideal for bulk & industrial buyers</li>
+        <li>Available in all 5 sizes</li>
+      </ul>
+    </div>
+    <div class="tier-card select">
+      <div class="tier-card-icon">⭐</div>
+      <div class="tier-card-tag">Mid Tier</div>
+      <h3 class="tier-card-title">Shahi Baag Select</h3>
+      <p class="tier-card-desc">Premium graded, aged, and sorted rice with reduced pesticide residue. For households and restaurants wanting better quality.</p>
+      <ul class="tier-features">
+        <li>Aged 12–24 months for better aroma</li>
+        <li>Reduced pesticide residue</li>
+        <li>Double sorted & cleaned</li>
+        <li>Restaurant preferred grade</li>
+      </ul>
+    </div>
+    <div class="tier-card organic-card">
+      <div class="tier-card-icon">🌿</div>
+      <div class="tier-card-tag">Premium Tier</div>
+      <h3 class="tier-card-title">Shahi Baag Organic</h3>
+      <p class="tier-card-desc">Fully certified organic. Zero synthetic pesticides. Traceable from farm to bag. For health-conscious consumers.</p>
+      <ul class="tier-features">
+        <li>Certified organic (Canada Organic)</li>
+        <li>Zero synthetic pesticides</li>
+        <li>Farm traceable with batch codes</li>
+        <li>Premium retail ready</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="products-section" id="products">
+  <div class="section-label">Our Products</div>
+  <h2 class="section-title">Every Variety, <em>Every Customer</em></h2>
+  <p class="section-sub">From aged basmati for fine dining to broken rice for pet food manufacturers — Shahi Baag covers every rice need.</p>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img classic-bg">🍚</div>
+      <div class="product-info">
+        <div class="product-name">Classic Basmati Rice</div>
+        <p class="product-desc">Standard grade basmati. Great everyday value for families.</p>
+        <div class="product-footer">
+          <div class="product-price">$2.99<span>starting</span></div>
+          <button class="add-btn">View</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img select-bg">⭐</div>
+      <div class="product-info">
+        <div class="product-name">Extra Long Grain Basmati</div>
+        <p class="product-desc">Aged 24 months. Signature aroma preferred by restaurants.</p>
+        <div class="product-footer">
+          <div class="product-price">$4.99<span>starting</span></div>
+          <button class="add-btn">View</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img organic-bg">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Certified Organic Basmati</div>
+        <p class="product-desc">100% certified organic. Zero synthetic pesticides.</p>
+        <div class="product-footer">
+          <div class="product-price">$6.99<span>starting</span></div>
+          <button class="add-btn">View</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img bulk-bg">🏭</div>
+      <div class="product-info">
+        <div class="product-name">Broken Rice — Bulk B2B</div>
+        <p class="product-desc">Consistent grade for pet food manufacturers & processors.</p>
+        <div class="product-footer">
+          <div class="product-price">Bulk<span>pricing</span></div>
+          <button class="add-btn">Inquire</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="products-section" id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Order or <em>Inquire</em></h2>
+  <p class="section-sub">Whether you're a family ordering or a manufacturer needing bulk supply — we'd love to hear from you.</p>
+  <div style="margin-top: 60px; max-width: 600px;">
+    <form onsubmit="handleSubmit(event)" style="display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <label style="display: block; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;">Name</label>
+        <input type="text" placeholder="Your name" required style="width: 100%; padding: 16px 20px; border: 1px solid rgba(61,40,0,0.15); border-radius: 2px; font-family: 'Josefin Sans', sans-serif; font-size: 0.8rem; color: var(--text);">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;">Email</label>
+        <input type="email" placeholder="your@email.com" required style="width: 100%; padding: 16px 20px; border: 1px solid rgba(61,40,0,0.15); border-radius: 2px; font-family: 'Josefin Sans', sans-serif; font-size: 0.8rem; color: var(--text);">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;">Message</label>
+        <textarea placeholder="Tell us about your needs..." required style="width: 100%; padding: 16px 20px; border: 1px solid rgba(61,40,0,0.15); border-radius: 2px; font-family: 'Josefin Sans', sans-serif; font-size: 0.8rem; color: var(--text); min-height: 120px; resize: vertical;"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Send Inquiry</button>
+    </form>
+    <div style="margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(61,40,0,0.1);">
+      <div style="margin-bottom: 32px;">
+        <div style="font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;">Email</div>
+        <div style="font-size: 0.8rem; color: var(--text);">info@shahibaag.com</div>
+      </div>
+      <div>
+        <div style="font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px;">Location</div>
+        <div style="font-size: 0.8rem; color: var(--text);">Brampton, Ontario, Canada</div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Shahi Baag</div>
+      <p class="footer-brand-desc">Royal farm produce from India's finest fields to Canadian tables.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <ul class="footer-links">
+        <li><a href="#products">Classic Rice</a></li>
+        <li><a href="#products">Select Rice</a></li>
+        <li><a href="#products">Organic Rice</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#tiers">Quality Tiers</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Shahi Baag. Brampton, Ontario, Canada.</div>
+    <div class="footer-tagline">Royal Farm Produce</div>
+  </div>
+</footer>
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  alert('Thank you! We will contact you within 24 hours.');
+  event.target.reset();
+}
+</script>
+</body>
+</html>
